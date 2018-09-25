@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>html form 演示</title>
+		<style type="text/css">
+			fieldset { 				margin-bottom:10px; 	}
+		</style>
+    <script type="text/javascript" src='ajax.js'></script>
+
+	</head>
+	
+	<body>
+	<form id="formTest" name='formTest' action="save_ajax.php" method="post"  onreset="alert('唉，又要重填')" onsubmit="alert('我被送到服务端去啦！');" enctype="multipart/form-data"  >
+	<fieldset>	
+		<legend>text 文本框</legend>
+			<input type="text" name="textTest"			
+			value="有七朵玫瑰花" maxlength="9"
+			size="20" />
+			<input type="button" value="输入了什么？"  onclick="iknow('text')">
+	</fieldset>
+
+	<fieldset>	
+		<legend>password 密码框</legend>
+			<input type="password" name="passwordTest" value="好一朵玫瑰花呀"  maxlength="10" size="20"/>
+			<input type="button" value="输入了什么？" onclick="iknow('password')">
+	</fieldset>
+		
+	<fieldset>	
+		<legend>textarea 多行文本框</legend>
+			<textarea name="textareaTest" 
+				cols="20"  
+				rows="10">
+        好一朵玫瑰花呀
+        好一朵玫瑰花呀
+        好一朵玫瑰花呀
+			</textarea>
+			<input type="button" value="输入了什么？" onclick="iknow('textarea')" />
+			<input type="button" value="执行我！" onclick="eval(document.forms[0].elements['textareaTest'].value)">
+	</fieldset>
+	
+	<fieldset>
+		<legend>Radio 单选按钮</legend>
+			<input type="radio" name="radioTest" checked="checked"/>
+			<input type="radio" name="radioTest" />
+			<input type="radio" name="radioTest"   />
+			<input type="radio" name="radioTest" />
+			<input type="button" value="谁被选中了？" onclick="iknow('radio')">
+	</fieldset>
+	
+	<fieldset>
+		<legend>CheckBox 多选按钮</legend>
+			<input type="checkbox" name="checkboxTest" checked="checked" />
+			<input type="checkbox" name="checkboxTest" />
+			<input type="checkbox" name="checkboxTest" />
+			<input type="checkbox" name="checkboxTest" checked="checked"/>
+			<input type="button" value="谁被选中了？" onclick="iknow('checkbox')">
+	</fieldset>
+	
+	<fieldset>
+		<legend>ComBox 下拉框</legend>
+			<select name="comboxTest">
+		        <option>网络技术</option>
+		        <option selected="true">网络系统管理</option>
+		        <option >信息安全</option>
+			</select>
+			<input type="button" value="谁被选中了？" onclick="iknow('combox')">
+	</fieldset>
+
+	<fieldset>
+		<legend>ListBox 列表框</legend>
+			<select name="listboxTest" multiple="true">
+		        <option>网络技术</option>
+		        <option selected="true" value="network">网络系统管理</option>
+		        <option selected="true">信息安全</option>
+			</select>
+			<input type="button" value="谁被选中了？" onclick="iknow('listbox')">
+	</fieldset>
+	
+	<fieldset>
+		<legend>file 文件框</legend>
+			<input type="file" name="fileTest" size="30" />
+			<input type="button" value="输入了什么？" onclick="iknow('file')">
+	</fieldset>
+	
+	<fieldset>
+		<legend>hidden 隐藏框</legend>
+			<input type="hidden" name="hiddenTest" value="我是谁你看不见！" size="30" />
+			<input type="button" value="输入了什么？" onclick="iknow('hidden')">
+	</fieldset>
+	
+  <div id="message" style="background-color:red;color:white;"> </div>
+  
+	<input type="submit" value="提交到服务端" />
+	<input type="button" value="ajax方式提交到服务端" onclick="submitData();"/>
+	<input type="reset" value="重新填写"/>
+
+</form>
+
+
+
+  <script type="text/javascript">
+
+  function submitData(){
+      var xhr = createXHR();        
+      xhr.onreadystatechange = function(event){
+          if (xhr.readyState == 4){
+              if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+                  msgbox(xhr.responseText);                                   
+              } else {
+                  alert("Request was unsuccessful: " + xhr.status);
+              }
+          }
+      };
+      
+      xhr.open("post", "save_ajax.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      var form = document.getElementById("formTest");            
+      xhr.send(serialize(form));
+           
+  }
+  
+  function msgbox(msg){    
+    var o = document.getElementById('message');
+    o.innerHTML = msg ;
+    o.style.display = 'block';
+  }
+  </script>
+    
+	</body></html>

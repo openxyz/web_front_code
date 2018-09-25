@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>三级联动插件</title>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<script type="text/javascript" src="./pcd.js"></script>		
+		<script type="text/javascript" src="./pcd-data.js"></script>
+	</head>
+
+	<body>
+
+	<select id="province">
+		
+	</select>
+
+	<select id="city">
+		
+	</select>
+
+	<select id="district">
+		
+	</select>
+
+	<script type="text/javascript">		
+		new PCD(pcdData,["province","city",'district']);
+		//new PCD(pcdData,["province","city",'district'],["省份","地级市","区县"]);
+	</script>
+
+	</body>
+
+</html>

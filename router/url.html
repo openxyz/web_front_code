@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>router</title>
+	<meta charset='utf-8'/>
+	<title>WEB资源地址</title>
+</head>
+<body>
+
+	<h2>当前链接地址: <span id="note"></span></h2>	
+	<h2>当前链接的执行效果: <span id="content"></span></h2>	
+	<h2>全页面</h2>
+	<ul>	
+		<a href="x.html">服务端静态页面</a>
+		<a href="x.html#top">服务端静态页面片断</a>		
+		<a href="x.php">服务端动态页面</a>
+		<a href="x.php?k1=xxx&k2=xxx">服务端动态页面(带参数)</a>
+		<a href="x.php#top">错误的示范</a>		
+	</ul>
+
+
+	<h2>局部页面</h2>
+	<ul>	
+		<a href="#top">静态局部页面</a> 
+		<a href="#" id="ajax">动态局部页面</a>
+		<a href="javascript:void(0)" id="ajax">动态局部页面</a>		
+	</ul>
+
+	<h2>动态局部页面 with hashbang!</h2>
+	<ul>	
+		<a href="#/do" class="hashbang">可定址的局部页面</a>
+		<a href="#/do/x1" class="hashbang">可定址的局部页面(带参数)</a>
+		<a href="#/do/x1/x2" class="hashbang">可定址的局部页面(带多个参数)</a>		
+	</ul>
+
+
+	<h2>动态局部页面 with pushstate</h2>
+	<ul>	
+		<a href="page" class="pajx">可定址的局部页面 pajx</a>
+		<a href="page/1" class="pajx">可定址的局部页面(带参数) pajx</a>		
+		<a href="page/1/2" class="pajx">可定址的局部页面(带多个参数) pajx</a>				
+	</ul>
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+	<script type="text/javascript">
+
+	$('#ajax').click(function(event) {
+		console.log('update partial page with something');
+		// do more with ajax
+		$('#content').html(new Date);
+		return false;	
+	});
+
+
+	// for hashbang
+	$('.hashbang').click(function(event) {			
+		$('#content').html($(this).text() + ' are clicked');
+		
+	});
+
+	var hashbang_callback =  function(){
+		console.log('hashbang');	
+		var hash = location.hash;
+        var matchResult = hash.match('#/do.*');
+        if (matchResult){        	
+           $("a[href='" + matchResult + "']").click();
+           console.log("a[href='" + matchResult + "']"); //=> $("a[href='#/do']")
+        }	
+     };
+
+	window.addEventListener('load', hashbang_callback, false);
+	window.addEventListener('hashchange', hashbang_callback, false);
+
+
+	// for pushsate
+
+	pajax_do = function(txt){
+		$('#content').html( txt + ' are clicked');
+	}
+
+	$('.pajx').click(function(event) {
+		console.log('pajx');		
+		pajax_do( $(this).text() );
+		
+		var ajax_url =  this.getAttribute('href');
+		var static_url =  '?' +  ajax_url;
+		var state = {
+		    title: $(this).text(),
+		    url: ajax_url,
+		    otherkey: 'something'
+		};
+
+      	window.history.pushState(state, null, static_url);      
+      	return false;		
+	});
+
+	var pajax_callback =  function(event){
+		console.log('pajx');	
+		var state = history.state;
+		if (!state)  return;
+        var matchResult = state.url.match('page.*');
+        if (matchResult){        	
+           pajax_do( state.title );           
+        }	
+     };
+
+	
+	window.addEventListener('popstate', pajax_callback, false);
+
+	</script>
+
+
+	<script type="text/javascript">
+		$('a').mouseover(function(event) {
+			$('#note').html(this.getAttribute('href'));
+		});
+	 
+	</script>
+	
+</body>
+</html>

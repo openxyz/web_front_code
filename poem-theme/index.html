@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>结构、样式、行为</title>
+<link id="mycss" rel="stylesheet" href="css/green/style.css" media="screen"/>
+<script type="text/javascript">
+
+	function changeCSS(theme){
+		var o=document.getElementById("mycss");
+		var cbx=document.getElementById("cssbox");
+		var theme=cbx.options[cbx.selectedIndex].value;
+		o.href="css/" + theme + "/style.css";
+	}
+
+	function changeNav(oEvent) {
+		var o=document.getElementById("cssNav");
+		if (oEvent) {			//for firefox
+			o.style.left = window.pageXOffset + 10 +"px" ;
+			o.style.top	= window.pageYOffset + 10 +"px";
+		}
+		else{  						//for IE6 with a doctype declare
+			o.style.left = document.documentElement.scrollLeft ;
+			o.style.top	= document.documentElement.scrollTop ;
+		}
+	}
+	window.onscroll = changeNav;
+</script>
+<style type="text/css">
+
+</style>
+</head>
+
+<body>
+<div id="cssNav" style="position:absolute;left:0; top:0px;">
+	<select name="cssbox" id="cssbox" onclick="changeCSS()">
+		        <option value="green">绿色主题</option>
+		        <option value="black">黑色主题</option>
+		        <option value="none">无</option>
+	</select>
+</div>
+
+
+<div id="main">
+	<div id="div_top">晏殊《浣溪沙·一曲新词酒一杯》</div>
+	<div id="content" >
+		<div id="div_left">
+			<p>一曲新词酒一杯,</p>
+			<p>去年天气旧亭台,</p>
+			<p>夕阳西下几时回？</p>
+		</div>
+		<div id="div_right">
+			<p>无可奈何花落去,</p>
+			<p>似曾相识燕归来.</p>
+			<p>小园香径独徘徊.</p>
+		</div>
+	<div class="clear"></div>
+	<div id="details" style="">
+		<p>晏殊一生著作颇丰，是宋代婉约派著名词人之一，其词作品在当时颇负盛名。他的词以抒写闲情雅致著称，作品沿袭了晚唐、五代词柔靡哀婉的遗风，多抒写酒足饭饱之后的娱宾谴兴和描写男女相思、离情别绪之主题。王灼在《碧鸡漫志》中称其为：“晏元献公长短句，风流蕴籍，一时莫及。而温润秀洁，亦其无比。”此话比较准确地概括了晏殊词作品的风格特色。上面这首词作品就是他的代表作之一。
+
+</p>
+		<p>这是一首抒发闲愁的词。由于晏殊少年得志，生于承平之时，仕至宰相，政事之外，过着“喜宾客，未尝一日不宴饮”的生活，征歌逐舞，以诗酒消遣。这样的地位、                                                                                            生活、思想感情，所以决定了他的诗词作品如珠似玉，温润秀洁，字里行间只有些许淡淡的闲愁。上面这首词作品所抒发的即是悼惜残春之感。
+
+</p>
+		<p>这首词主要写作者新词对酒的优雅闲适生活和对暮春残景的叹惋惆怅，抒发了春光易逝，人生易老，富贵难久的“闲愁”，表现了作者生活的优裕和精神生活的寂寞空虚，典型地反映了北宋前期达官显贵们的精神状态。
+
+</p>
+		<p>词的上阕主要写持酒听新词，意兴无穷，但是突然记起去年也是此时、此地、此情、此景，一样的天气，一样的亭台，一样的“一曲新词酒一杯”，此时感到光阴的流逝，不可追回，虽有富贵，犹有不足，因而未免深深叹息。
+
+</p>
+		<a href="#" style="">．．．．更多内容．．．．</a>
+	</div>
+	<div id="div_bottom">唐诗 . 宋词 . 元曲</div>
+</div>
+
+</body>
+</html>

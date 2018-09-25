@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>登录</title>
+
+  <style type="text/css" >
+    input {display:block;}
+  </style>
+
+  <script type="text/javascript" src="CookieUtil.js"></script>
+</head>
+
+
+<body>
+  <div id="loginbar">
+    <h2 id='hello' style="background-color:red;"> </h2>
+    <a href="#" id="logout">注销</a>
+  </div>
+
+
+  <form name="login" action="#" method="post" >
+    <label>用户名</lable>
+    <input type="text" name="name" id="name"  maxlength="10" size="20"/>
+
+    <label>password 密码框</label>
+    <input type="password" name="pwd1" id="pwd1" maxlength="10" size="20"/>
+    <input type="password" name="pwd2" id="pwd2" maxlength="10" size="20"/>
+
+    <input type="button" value="登录" name="login" style="display:inline"/>
+    记住我 <input type="checkbox" name="remember_me" style="display:inline">
+
+  </form>
+
+  <script type="text/javascript">
+    var form = document.forms[0];
+    var fields= form.elements;
+
+
+    fields['login'].onclick=function(){
+      if(fields['remember_me'].checked == true){
+        // 默认保留七天的用户信息
+        var now = new Date();
+        CookieUtil.set("name", fields["name"].value , new Date(now.getTime()+7*24*3600*1000) );
+      }else{
+        CookieUtil.set("name",fields["name"].value);
+      }
+      window.location.reload();
+    };
+
+    document.getElementById("logout").onclick = function(){
+      CookieUtil.unset("name");
+      window.location.reload();
+    }
+
+
+    username = CookieUtil.get("name") ;
+    if(username == null){
+        form.style.display = 'block';
+        document.getElementById("hello").innerHTML =  '';
+        document.getElementById("loginbar").style.display = 'none';
+    }else{
+        form.style.display = 'none';
+        document.getElementById("hello").innerHTML =  '欢迎您回来:' + username;
+        document.getElementById("loginbar").style.display = 'block';
+    }
+  </script>
+</body>
+

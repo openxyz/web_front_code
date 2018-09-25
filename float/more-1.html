@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <style type="text/css">
+    body{text-align:center;margin:0 auto;}
+
+    .greybox{background:#e1e1e1;  border:solid 1px yellow;}
+    .bluebox{background:blue; border:solid 1px white;}
+    .redbox{background:red; border:solid 1px black;}
+    div {border:inherit;background:transparent;margin:5px;}
+
+    #top {}
+    #middle{}
+    #bottom{}
+
+    #mid_row1_col1{float:left;}
+    #mid_row1_col2{float:left;}
+    #mid_row1_col3{float:right;}
+
+    .clear{clear:both;border:none;height:1px;margin:0;padding:0}
+
+  </style>
+
+
+</head>
+
+<body class="greybox" style="width:900px">
+  <div id="top" class="redbox" style="height:60px;" >
+    顶部
+  </div>
+
+  <div id="middle" class="redbox">
+    <div id="mid_row1" style="height:350px;" >
+      <div id="mid_row1_col1" class="greybox" style="height:90%;width:35%">第一列</div>
+      <div id="mid_row1_col2" class="greybox" style="height:90%;width:35%">第二列</div>
+      <div id="mid_row1_col3" class="bluebox" style="height:90%;width:20%" >
+        <div id="mid_row1_col3_row1" style="height:45%">
+          第三列第一行
+        </div>
+        <div id="mid_row1_col3_row2" style="height:45%">
+          第三列第二行
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="mid_row2" style="height:100px;" class="bluebox">第二行</div>
+    <div id="mid_row3" style="height:100px;" class="bluebox">第三行</div>
+  </div>
+
+  <div id="bottom" style="height:60px;" class="redbox">底部</div>
+</body>
+</html>

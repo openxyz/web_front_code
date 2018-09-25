@@ -1,0 +1,134 @@
+function ShowMsgText()
+{
+
+    $.ajax({
+
+    url:"../datas/jsonTest_1.ashx",   
+
+    type:"post",
+
+    success:function(data){//text,responseText,responseXML
+
+    alert(data);
+
+    $("#divResult").text(data);
+
+    }
+
+    });
+
+}
+
+ 
+
+function ShowMsgXml()
+
+{
+
+    $.ajax({
+
+    url:"../datas/jsonTest_1.xml",   
+
+    type:"post",
+
+    dataType:"xml",
+
+    success:function(data){//xml object
+
+    $("#divResult").text(data.text);
+
+    }
+
+    });
+
+}
+
+ 
+
+function ShowMsgHtml()
+
+{
+
+    $.ajax({
+
+    url:"../datas/jsonTest_1.htm",   
+
+    type:"get",
+
+    dataType:"html",
+
+    success:function(data){//html object
+
+    $("#divResult").html(data);
+
+    }
+
+    });
+
+}
+
+ 
+
+function ShowMsgScript()
+
+{
+
+    $.ajax({
+
+    url:"../datas/jsonTest_1.js",   
+
+    type:"get",
+
+    dataType:"script",
+
+    success:function(data){//script text
+
+    $("#divResult").text(data);
+
+    }
+
+    });
+
+}
+
+ 
+
+function ShowMsgJson()
+
+{
+
+    $.ajax({
+
+    url:"../datas/jsonTest_1.ashx",   
+
+    type:"get",
+
+    dataType:"json",
+
+    success:function(data){//json obj
+
+        $("#divResult").text(data[0].city);
+
+    }
+
+    });
+
+}
+
+ 
+
+function ShowMsgJson1()
+
+{
+
+    $.getJSON(
+
+    "../datas/jsonTest_1.ashx",   
+
+    function(data){ //json obj
+
+        $("#divResult").text(data[1].city);
+
+    });
+
+}

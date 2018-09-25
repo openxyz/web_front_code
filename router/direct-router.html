@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>router</title>
+	<meta charset='utf-8'/>
+	<title>WEB资源地址</title>
+</head>
+<body>
+
+	<h2>当前链接地址: <span id="note"></span></h2>	
+	<h2>当前链接的执行效果: <span id="content"></span></h2>	
+
+   	<ul>
+      <li><a href="#/author">#/author</a></li>
+      <li><a href="#/books">#/books</a></li>
+      <li><a href="#/books/view/1">#/books/view/1</a></li>
+    </ul>
+
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/direct.js"></script>
+
+	<script type="text/javascript">
+
+		function dosomething(txt) {
+			console.log('ccc');
+			$('#content').html( txt + ' are clicked');
+		}
+
+		var author = function () { dosomething("author"); };
+		var books = function () { dosomething("books"); };
+		var viewBook = function (bookId) {
+			dosomething("viewBook: bookId is populated: " + bookId);			
+		};
+
+		var routes = {
+			'/author': author,
+			'/books': [books, function() {
+				 dosomething("An inline route handler.");
+			}],
+			'/books/view/:bookId': viewBook
+		};
+
+		var router =  Router(routes)
+		router.configure({html5history:true,run_handler_in_init:false,convert_hash_in_init:false});      	
+		//router.setRoute('/direct-router.html');
+      	router.init();
+      	
+
+
+	</script>
+
+	<script type="text/javascript">
+
+
+		$('a').mouseover(function(event) {
+			$('#note').html(this.getAttribute('href'));
+		});
+	 
+	</script>
+
+</body>
+</html>

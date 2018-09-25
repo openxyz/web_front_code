@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>position example</title>
+    <meta charset='utf-8'>
+    <style type="text/css">
+
+    #page{
+        width:460px;
+        margin: 0 auto;
+        padding:10px;
+    }
+
+    section p{
+        border:1px solid grey;
+    }
+
+
+    #relative img{
+        position: relative;
+        top:60px;
+        left:60px;
+    }
+    </style>
+</head>
+
+<body>
+<div id="page">
+
+
+    <section id="relative">
+        <h2>相对定位</h2>
+        <p>
+            元素一旦被设置为相对定位，即可通过top、left、bottom、right等属性来设置该元素相对于原位置（即参考原点）的偏移量。与浮动不同，相对定位后的元素不需要清除，并可以与文本元素相重叠。<br/>
+            注意，图片被相对定位后，后面的文本内容并不会挤占原来图片的空间，相当于原空间保留。
+
+        </p>
+        <img src="./pic.jpg" >
+        <p>李白，字太白，号青莲居士，又号“谪仙人”，是唐代伟大的浪漫主义诗人，被后人誉为“诗仙”，与杜甫并称为“李杜”，为了与另两位诗人李商隐与杜牧即“小李杜”区别，杜甫与李白又合称“大李杜”。
+        </p>
+    </section>
+
+
+
+
+<div>
+</body>
+</html>

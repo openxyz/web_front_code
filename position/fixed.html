@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>position example</title>
+    <meta charset='utf-8'>
+    <style type="text/css">
+
+    #page{
+        width:460px;
+        height:3000px;
+        margin: 0 auto;
+        padding:10px;
+    }
+
+    section p{
+        border:1px solid grey;
+    }
+
+    #fixed img{
+        position: fixed;
+        bottom:30px;
+        right:30px;
+    }
+
+    </style>
+</head>
+
+<body>
+<div id="page">
+
+    <section id="fixed">
+        <h2>固定定位</h2>
+        <p>
+            与绝对定位不同，固定定位的参考原点永远是屏幕视区(view port)的左上角或右下角，而不是文档区域<br/>
+            与屏幕视区相对应的，是文档区域。绝对定位所参考的就是文档区域的原点。屏幕视区是浏览器的窗口决定的，相对不变。而文档区域则随着文档的高宽度而变化，一般来说文档区域 > 屏幕视区。
+        </p>
+        <img src="./pic.jpg" >
+        <p>杜甫，字子美，汉族，本襄阳人，后徙河南巩县。自号少陵野老，唐代伟大的现实主义诗人，与李白合称“李杜”
+        </p>
+    </section>
+
+<div>
+</body>
+</html>

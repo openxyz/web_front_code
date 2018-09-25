@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>position example</title>
+    <meta charset='utf-8'>
+    <style type="text/css">
+
+    #page{
+        width:460px;
+        height:3000px;
+        margin: 0 auto;
+        padding:10px;
+    }
+
+    section p{
+        border:1px solid grey;
+    }
+
+    #absolute img{
+        position: absolute;
+        bottom:60px;
+        right:60px;
+    }
+
+    </style>
+</head>
+
+<body>
+<div id="page">
+
+
+    <section id="absolute">
+        <h2>绝对定位</h2>
+        <p>
+            与相对定位相似，但区别在于，绝对定位的参考原点是最亲近的已定位过的祖先元素(譬如某个被定位为releative的父元素)。如果不存在这样的元素，则默认是body元素。本例中，请滚动文档至第一页，可在右下角看到李白的图片。
+            <br/>
+            1. 注意：图片下方的文字挤占了原图片所在的空间！
+            <br/>
+            2. 思考：由于我故意将页面的高度设置为3000px，所以当前页面可以滚动为两页。那么，为何图片只是出现在文档的第一页，而不是最后一页的右下角？当滚动到第二页时，图片将消失。
+        </p>
+        <img src="./pic.jpg" >
+        <p>李白，字太白，号青莲居士，又号“谪仙人”，是唐代伟大的浪漫主义诗人，被后人誉为“诗仙”，与杜甫并称为“李杜”，为了与另两位诗人李商隐与杜牧即“小李杜”区别，杜甫与李白又合称“大李杜”。
+        </p>
+    </section>
+
+
+<div>
+</body>
+</html>

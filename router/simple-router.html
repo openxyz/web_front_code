@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>router</title>
+	<meta charset='utf-8'/>
+	<title>WEB资源地址</title>
+</head>
+<body>
+
+	<h2>当前链接地址: <span id="note"></span></h2>	
+	<h2>当前链接的执行效果: <span id="content"></span></h2>	
+
+	<ul>	
+		<a href="#/do" class="hashbang">do</a>
+		<a href="#/do/x1" class="hashbang">do2</a>
+		<a href="#/do/x1/x2" class="hashbang">do3</a>		
+	</ul>
+
+
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+	<script type="text/javascript">
+
+		function Router(){};
+
+		Router.prototype.setup = function(routemap, defaultFunc){
+		    var that = this, rule, func;
+		    this.routemap = [];
+		    this.defaultFunc = defaultFunc;
+		    for (var rule in routemap) {
+		        if (!routemap.hasOwnProperty(rule)) continue;
+		        that.routemap.push({
+		            rule: new RegExp(rule, 'i'),
+		            func: routemap[rule]
+		        });       
+		    }
+		};
+
+		Router.prototype.start = function(){
+		    console.log(window.location.hash);
+		    var hash = location.hash, route, matchResult;
+		    for (var routeIndex in this.routemap){
+		        route = this.routemap[routeIndex];
+		        matchResult = hash.match(route.rule);
+		        if (matchResult){
+		          route.func.apply(window, matchResult.slice(1));
+		          return; 
+		        }
+		    }
+		    this.defaultFunc();
+		};
+
+		    
+
+		var router = new Router();
+
+		router.setup({    
+		    
+		    '#/do$': function(){
+		    	dosomething('do');
+		        console.log('do ...');
+		    },
+
+		    '#/do/(.*)': function(p1){
+		    	dosomething( 'do(' + p1 + ')'  );
+		        console.log('do', p1); 
+		    },
+
+		    '#/do/(.*)/(.*)': function(p1, p2){
+		    	dosomething( 'do(' + p1 +  ',' + p2 + ')'  );
+		        console.log('do', p1, p2);
+		    }
+
+		}, function(){
+		    console.log('default router');
+		});
+
+
+		function dosomething(txt) {
+			$('#content').html( txt + ' are clicked');
+		}
+
+		// same as load
+		router.start();
+		window.addEventListener('hashchange', function(){router.start()}, false) ;
+
+	
+	</script>
+
+
+	<script type="text/javascript">
+		$('a').mouseover(function(event) {
+			$('#note').html(this.getAttribute('href'));
+		});
+	 
+	</script>
+	
+</body>
+</html>

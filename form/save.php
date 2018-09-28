@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,8 +8,9 @@
   <body>
     <h1> 提交到服务器的结果</h1>
     <?php
-      var_export($_POST["textTest"]);
-
+      foreach ($_POST as $key => $value) {
+        echo "<li>{$key} : {$value} </li>";
+      }
     ?>
 
   </body>

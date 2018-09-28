@@ -9,34 +9,34 @@
 			}
 		</style>
 	</head>
-	
+
 	<body>
-	<form name="formTest" action="save.asp" method="post"  onreset="alert('唉，又要重填')" onsubmit="alert('我被送到服务端去啦！')" enctype="multipart/form-data"  >
-	<fieldset>	
+	<form name="formTest" action="save.php" method="post"  onreset="alert('唉，又要重填')" onsubmit="alert('我被送到服务端去啦！')" enctype="multipart/form-data"  >
+	<fieldset>
 		<legend>text 文本框</legend>
-			<input type="text" name="textTest"			
+			<input type="text" name="textTest"
 			value="有七朵玫瑰花" maxlength="9"
 			size="20"/>
-			<input type="button" value="输入了什么？" 
+			<input type="button" value="输入了什么？"
 			onclick="iknow('text')">
 	</fieldset>
 
-	<fieldset>	
+	<fieldset>
 		<legend>password 密码框</legend>
 			<input type="password" name="passwordTest" value="好一朵玫瑰花呀"  maxlength="10" size="20"/>
 			<input type="button" value="输入了什么？" onclick="iknow('password')">
 	</fieldset>
-		
-	<fieldset>	
+
+	<fieldset>
 		<legend>textarea 多行文本框</legend>
-			<textarea name="textareaTest" 
-				cols="20"  
+			<textarea name="textareaTest"
+				cols="20"
 				rows="10" >好一朵玫瑰花呀
 			</textarea>
 			<input type="button" value="输入了什么？" onclick="iknow('textarea')">
 			<input type="button" value="执行我！" onclick="eval(document.forms[0].textareaTest.value)">
 	</fieldset>
-	
+
 	<fieldset>
 		<legend>Radio 单选按钮</legend>
 			<input type="radio" name="radioTest" checked="checked"/>
@@ -45,7 +45,7 @@
 			<input type="radio" name="radioTest" />
 			<input type="button" value="谁被选中了？" onclick="iknow('radio')">
 	</fieldset>
-	
+
 	<fieldset>
 		<legend>CheckBox 多选按钮</legend>
 			<input type="checkbox" name="checkboxTest" checked="checked" />
@@ -54,7 +54,7 @@
 			<input type="checkbox" name="checkboxTest" checked="checked"/>
 			<input type="button" value="谁被选中了？" onclick="iknow('checkbox')">
 	</fieldset>
-	
+
 	<fieldset>
 		<legend>ComBox 下拉框</legend>
 			<select name="comboxTest">
@@ -74,19 +74,19 @@
 			</select>
 			<input type="button" value="谁被选中了？" onclick="iknow('listbox')">
 	</fieldset>
-	
+
 	<fieldset>
 		<legend>file 文件框</legend>
 			<input type="file" name="fileTest" size="30" />
 			<input type="button" value="输入了什么？" onclick="iknow('file')">
 	</fieldset>
-	
+
 	<fieldset>
 		<legend>hidden 隐藏框</legend>
 			<input type="hidden" name="hiddenTest" value="我是谁你看不见！" size="30" />
 			<input type="button" value="输入了什么？" onclick="iknow('hidden')">
 	</fieldset>
-		
+
 	<input type="submit" value="提交到服务端"/>
 	<input type="reset" value="重新填写"/>
 	</form>
@@ -102,42 +102,42 @@
 				case "password":
 					alert(f.passwordTest.value);
 					break;
-					
+
 				case "textarea":
 					alert(f.textareaTest.value) ;
 					break;
 
-				case "radio":					
+				case "radio":
 					for (var i=0;i<f.radioTest.length;i++)
 						if (f.radioTest[i].checked==true)
-							alert("第"　+　(i+1)  +"项被选中了！")						
-					break;	
-					
+							alert("第"　+　(i+1)  +"项被选中了！")
+					break;
+
 				case "checkbox":
 					for(var i=0;i<f.checkboxTest.length;i++)
 						if (f.checkboxTest[i].checked==true)
-							alert("第"　+　(i+1)  +"项被选中了！")						
-					break;	
-				
+							alert("第"　+　(i+1)  +"项被选中了！")
+					break;
+
 				case "combox":
 					var i=f.comboxTest.selectedIndex
 					alert("第"　+ (i+1) + "项被选中了:"
 					+ f.comboxTest.options[i].text);
 					break;
-					
+
 				case "listbox":
 					for(var i=0;i<f.listboxTest.length;i++)
 						if (f.listboxTest.options[i].selected==true)
-							alert("第"　+　(i+1)  + "项被选中了:" + f.listboxTest.options[i].text)						
+							alert("第"　+　(i+1)  + "项被选中了:" + f.listboxTest.options[i].text)
 					break;
-				
+
 				case "file":
 					alert(f.fileTest.value)
 					break;
-				
+
 				case "hidden":
-					alert(f.hiddenTest.value)		
+					alert(f.hiddenTest.value)
 				}
-		}		
+		}
 	</script>
 	</body></html>
